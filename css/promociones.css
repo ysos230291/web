@@ -1,0 +1,77 @@
+body{
+    margin: 0;
+    background:beige;    
+}
+header{
+    width: 100%;
+    height: 30vh;
+    background-image: linear-gradient(#fff7,#000)
+    ,url(../imagenes/fondo_header_promociones.jpg); 
+    background-size: cover;  
+    background-position: center; 
+    color: beige;
+}
+.header__div{    
+    text-align: center;
+}
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 0;
+    text-align: center;
+    padding: 70px;
+    padding-top: 140px;
+}
+/*BARRA NAVEGACION*/
+nav{
+    position: sticky;  
+    top: 0; 
+    font-size: 16px;
+}
+.nav__ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: wheat;
+    margin: 0;
+    padding: 10px 0; 
+    justify-content: space-evenly; 
+    font-size: 16px;        
+}
+.nav__ul a{
+    color: white;
+    text-decoration: none; 
+    list-style: none; 
+}
+.nav__ul a:hover{
+    color: #000c;
+    transition-property: color;
+    transition-duration: .5s;
+}  
+.nav__item{     
+    border: solid;
+    background-color: #000c;
+    padding: 5px;
+    border-radius: 20px; 
+    list-style: none; 
+    outline-color: aqua;    
+}
+.nav__item:hover{
+    background-color: beige;
+    padding: 5px;    
+    border-radius: 20px; 
+    border-color: #000c;               
+    transition-property: background-color, border-color;
+    transition-duration: .5s;
+}
+ul{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+p{
+    margin: 10px 20px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+
+

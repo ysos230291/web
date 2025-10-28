@@ -1,0 +1,113 @@
+body{
+    margin: 0;
+    background-color: #000c;
+} 
+
+/*AHORA VEREMOS EL HEADER*/
+header{
+    width: 100%;
+    height: 70vh;    
+    position: relative;       
+}
+.fondo__header{
+    width: 100%;
+    height: 70vh;
+    position: absolute; 
+    background-image: url("../imagenes/fondo_header .jpg");
+    background-size: cover;
+    background-position: center;    
+}
+.header__over{    
+    background-color: #000c;
+    width: 100%;
+    height: 70vh;     
+    text-align: center; 
+    position: absolute;    
+}
+.img__personal{
+    width: 200px;
+    max-width: 40%;
+    height: auto;
+    display: block;
+    border-radius: 50%;
+    margin: 40px auto 40px;     
+}
+h1{
+    font-size: 200%;
+    color:aquamarine;
+    margin: auto;
+    width: 80%;
+}
+.parrafo__header{
+    color:aquamarine;
+    margin:30px 10%;
+}
+
+/*BARRA NAVEGACION*/
+nav{
+    position: sticky;  
+    top: 0; 
+}
+.nav__ul{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: aquamarine;
+    margin: 0;
+    padding: 10px 0; 
+    justify-content: space-evenly;         
+}
+.nav__ul a{
+    color: white;
+    text-decoration: none; 
+    list-style: none; 
+}
+.nav__ul a:hover{
+    color: #000c;
+    transition-property: color;
+    transition-duration: .5s;
+}  
+.nav__item{     
+    border: solid;
+    background-color: #000c;
+    padding: 5px;
+    border-radius: 20px; 
+    list-style: none; 
+    outline-color: aqua;    
+}
+.nav__item:hover{
+    background-color: rgb(5, 121, 121);
+    padding: 5px;    
+    border-radius: 20px; 
+    border-color: #000c;               
+    transition-property: background-color, border-color;
+    transition-duration: .5s;           
+}    
+
+/*CONTENIDO DE LA PAGINA*/
+
+.content{
+    color: aquamarine;
+    justify-content: space-evenly;
+    margin: 10px 20px;
+    white-space: wrap;
+}
+/*
+.content p{
+    margin: 0;
+    padding: 0;
+}
+.content ul{
+    margin: 0;
+    padding: 0;
+}
+.content__ul{
+    margin: 0;
+    padding: 0;
+}
+.content_item{
+    margin: 0;
+    padding: 0;
+}
+
+
