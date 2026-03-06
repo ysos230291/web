@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "nombre": "Jabón (antibacterial)<br>con aceite de (coco)",
+    "imagen": "https://res.cloudinary.com/dumxtozlm/image/upload/v1771987226/1_nbyqts.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Shampoo hidratante<br>con keratina y<br>aceite de argán",
+    "imagen": "https://res.cloudinary.com/dumxtozlm/image/upload/v1771987225/2_k32goo.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Pasta dental<br>con flúor y menta",
+    "imagen": "https://res.cloudinary.com/dumxtozlm/image/upload/v1771987229/3_gd0xic.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Desodorante<br>sin alcohol<br>para piel sensible",
+    "imagen": "https://res.cloudinary.com/dumxtozlm/image/upload/v1771987229/4_xzhxrn.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Gel antibacterial<br>con humectante",
+    "imagen": "https://res.cloudinary.com/dumxtozlm/image/upload/v1771987229/5_z528mi.jpg"
+  }
+]

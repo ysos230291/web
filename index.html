@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19e65e",
+                        "background-light": "#FFF0F5",
+                        "background-dark": "#112116",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            @apply bg-black/90;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            cursor: pointer;
+            font-size: 30px;
+            background: none;
+            border: none;
+            padding: 5px 10px;
+        }
+        .modal-close:hover {
+            @apply text-primary;
+        }
+        .modal-image {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .modal-title {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            line-height: 1.5;
+            max-width: 80vw;
+            padding: 0 1rem;
+        }
+        .modal-title .parentesis {
+            @apply text-primary font-semibold;
+        }
+        .product-card {
+            cursor: pointer;
+        }
+        .product-title {
+            line-height: 1.5;
+            text-align: center;
+        }
+        .product-title .parentesis {
+            @apply text-primary font-semibold;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .logo-img {
+            height: 4rem;
+            width: 4rem;
+            object-fit: cover;
+            display: block;
+            border-radius: 9999px;
+            border: 2px solid #19e65e;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .phone-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            @apply text-slate-600 dark:text-slate-400 hover:text-primary transition-colors;
+        }
+        @media (max-width: 640px) {
+            .product-title {
+                font-size: 0.9rem;
+            }
+            .product-card {
+                margin-bottom: 0.5rem;
+            }
+            .modal-title {
+                font-size: 1rem;
+            }
+            .logo-img {
+                height: 3.5rem;
+                width: 3.5rem;
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="layout-container flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-4 py-3 bg-[#FFE4E1]/80">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<div class="logo-container">
+<img alt="Triple M" class="logo-img" src="img/logoTM.jpg"/>
+</div>
+<div class="relative flex-1 max-w-xs">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary text-xl">search</span>
+<input class="w-full bg-primary/5 border-none focus:ring-2 focus:ring-primary/50 rounded-lg py-2 pl-10 pr-4 text-sm md:text-base" id="searchInput" placeholder="Buscar productos..." type="text"/>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 py-6">
+<div class="mb-6 space-y-2">
+<h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-slate-100 tracking-tight">
+                Cuidado <span class="text-primary">Personal</span> Natural
+            </h2>
+<p class="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-2xl">
+                Descubre nuestra selección premium de productos esenciales para tu bienestar diario.
+            </p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6" id="productGrid">
+<div class="col-span-full text-center py-12">
+<div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
+<p class="mt-4 text-slate-600 dark:text-slate-400">Cargando productos...</p>
+</div>
+</div>
+</main>
+<footer class="border-t mt-8 px-4 py-8 border-slate-200 bg-[#FFE4E1]">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col items-center gap-6 pb-6 border-b border-primary/10">
+<div class="logo-container">
+<img alt="Triple M" class="logo-img" src="img/logoTM.jpg"/>
+</div>
+<a href="tel:+5354608897" class="phone-link">
+<span class="material-symbols-outlined text-xl">call</span>
+<span class="text-base font-semibold">+53 5 4608897</span>
+</a>
+</div>
+<div class="pt-6">
+<p class="text-slate-500 dark:text-slate-500 text-sm text-center">© 2024 Triple M. Calidad y frescura para tu bienestar.</p>
+</div>
+</div>
+</footer>
+</div>
+<div class="modal-overlay" id="imageModal" onclick="closeModal(event)">
+<div class="modal-content">
+<button class="modal-close" onclick="closeModal(event)">×</button>
+<img alt="Producto" class="modal-image" id="modalImage" src=""/>
+<div class="modal-title" id="modalTitle"></div>
+</div>
+</div>
+<script>
+    let productos = [];
+    async function cargarProductos() {
+        try {
+            const respuesta = await fetch('productos.json');
+            if (!respuesta.ok) throw new Error(`Error: ${respuesta.status}`);
+            productos = await respuesta.json();
+            renderizarProductos(productos);
+        } catch (error) {
+            console.error('Error al cargar productos:', error);
+            document.getElementById('productGrid').innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <span class="material-symbols-outlined text-6xl text-red-500 mb-4">error</span>
+                    <p class="text-red-500 text-lg mb-2">Error al cargar los productos</p>
+                </div>
+            `;
+        }
+    }
+    function procesarTextoConParentesis(texto) {
+        return texto.replace(/(\([^)]+\))/g, '<span class="parentesis">$1</span>');
+    }
+    function renderizarProductos(productosAMostrar) {
+        const grid = document.getElementById('productGrid');
+        if (!productosAMostrar || productosAMostrar.length === 0) {
+            grid.innerHTML = '<div class="col-span-full text-center py-12 text-slate-400">No se encontraron productos</div>';
+            return;
+        }
+        grid.innerHTML = '';
+        productosAMostrar.forEach(producto => {
+            const tarjeta = document.createElement('div');
+            tarjeta.className = 'product-card group bg-white dark:bg-slate-900/50 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-300';
+            const nombreConHTML = producto.nombre;
+            const nombreLimpio = producto.nombre.replace(/<[^>]*>/g, '');
+            tarjeta.setAttribute('onclick', `openModal('${producto.imagen}', '${nombreConHTML.replace(/'/g, "\\'")}')`);
+            const nombreProcesado = procesarTextoConParentesis(producto.nombre);
+            tarjeta.innerHTML = `
+                <div class="aspect-square w-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                         src="${producto.imagen}" alt="${nombreLimpio}"
+                         onerror="this.onerror=null; this.src='https://placehold.co/400x400/f1f5f9/94a3b8?text=${encodeURIComponent(nombreLimpio)}'"/>
+                </div>
+                <div class="p-3 md:p-4">
+                    <h3 class="product-title font-bold text-sm md:text-base text-slate-900 dark:text-slate-100">
+                        ${nombreProcesado}
+                    </h3>
+                </div>
+            `;
+            grid.appendChild(tarjeta);
+        });
+    }
+    function openModal(imageSrc, titleHTML) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        modalImage.src = imageSrc;
+        modalTitle.innerHTML = procesarTextoConParentesis(titleHTML);
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    function filterProducts() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+        const filtrados = searchTerm === '' ? productos : productos.filter(p => p.nombre.replace(/<[^>]*>/g, '').toLowerCase().includes(searchTerm));
+        renderizarProductos(filtrados);
+    }
+    function closeModal(event) {
+        if (event.target.classList.contains('modal-overlay') || event.target.classList.contains('modal-close')) {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            document.getElementById('imageModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        cargarProductos();
+        document.getElementById('searchInput').addEventListener('input', filterProducts);
+    });
+</script>
+
+</body></html>
